@@ -224,6 +224,7 @@ impl Generator {
 
             pub mod types {
                 use serde::{Deserialize, Serialize};
+                use utoipa::ToSchema;
 
                 // This may be used by some impl Deserialize, but not all.
                 #[allow(unused_imports)]
@@ -434,6 +435,7 @@ impl Generator {
             "reqwest = { version = \"0.11.12\", features = [\"json\", \"stream\"] }",
             "serde = { version = \"1.0\", features = [\"derive\"] }",
             "serde_urlencoded = \"0.7\"",
+            "utoipa = { version = \"2.2\", default-features=false, features = [\"actix_extras\"] }",
         ];
         if self.type_space.uses_regress() {
             deps.push("regress = \"0.4\"")
