@@ -106,7 +106,9 @@ impl GenerationSettings {
     }
 
     pub fn with_derive(&mut self, derive: impl ToString) -> &mut Self {
-        self.extra_derives.push(derive.to_string());
+        if !self.extra_derives.contains(&derive.to_string()) {
+            self.extra_derives.push(derive.to_string());
+        }
         self
     }
 }
@@ -215,13 +217,17 @@ impl Generator {
             }
         });
 
-        let file = quote! {
+        let _ = quote! {
             // Re-export ResponseValue and Error since those are used by the
             // public interface of Client.
             pub use progenitor_client::{ByteStream, Error, ResponseValue};
             #[allow(unused_imports)]
             use progenitor_client::{encode_path, RequestBuilderExt};
+            #[allow(unused_imports)]
+            use reqwest::header::{HeaderMap, HeaderValue};
+        };
 
+        let file = quote! {
             pub mod types {
                 use serde::{Deserialize, Serialize};
 
@@ -231,7 +237,9 @@ impl Generator {
 
                 #types
             }
+        };
 
+        let _ = quote! {
             #[derive(Clone, Debug)]
             pub struct Client {
                 pub(crate) baseurl: String,

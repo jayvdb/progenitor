@@ -144,18 +144,19 @@ fn main() -> Result<()> {
             /*
              * Create the Rust source file containing the generated client:
              */
-            let lib_code = format!("mod progenitor_client;\n\n{}", api_code);
+            let lib_code = format!("{}", api_code);
             let mut librs = src.clone();
             librs.push("lib.rs");
             save(librs, lib_code.as_str())?;
 
             /*
              * Create the Rust source file containing the support code:
-             */
+
             let progenitor_client_code = progenitor_client::code();
             let mut clientrs = src;
             clientrs.push("progenitor_client.rs");
             save(clientrs, progenitor_client_code)?;
+            */
         }
 
         Err(e) => {
