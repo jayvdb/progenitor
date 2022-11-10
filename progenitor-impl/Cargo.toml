@@ -13,7 +13,7 @@ indexmap = "1.9"
 openapiv3 = "1.0.0"
 proc-macro2 = "1.0"
 quote = "1.0"
-regex = "1.6"
+regex = "1.7"
 rustfmt-wrapper = "0.2.0"
 schemars = { version = "0.8.11", features = ["chrono", "uuid1"] }
 serde = { version = "1.0", features = ["derive"] }
@@ -21,8 +21,10 @@ serde_json = "1.0"
 syn = { version = "1.0", features = ["parsing"] }
 thiserror = "1.0"
 # To publish, use a numbered version
-typify = "0.0.10"
-#typify = { git = "https://github.com/oxidecomputer/typify" }
+# typify = "0.0.10"
+# This is https://github.com/oxidecomputer/typify/pull/109
+# and ros changes
+typify = { git = "https://github.com/jayvdb/typify", branch="ros-enhancements" }
 unicode-ident = "1.0.5"
 
 [dev-dependencies]

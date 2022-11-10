@@ -138,9 +138,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.0.18"
+version = "4.0.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "335867764ed2de42325fafe6d18b8af74ba97ee0c590fa016f157535b42ab04b"
+checksum = "8e67816e006b17427c9b4386915109b494fec2d929c63e3bd3561234cbf1bf1e"
 dependencies = [
  "atty",
  "bitflags",
@@ -345,6 +345,12 @@ checksum = "7896dc8abb250ffdda33912550faa54c88ec8b998dec0b2c55ab224921ce11df"
 dependencies = [
  "cfg-if",
 ]
+
+[[package]]
+name = "eq-float"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c02b5d1d1e6ba431b960d4bf971c8b0e2d2942b8cbc577d9bdf9c60fca5d41d"
 
 [[package]]
 name = "example-build"
@@ -1161,9 +1167,9 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.6.0"
+version = "1.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4c4eb3267174b8c6c2f654116623910a0fef09c4753f8dd83db29c48a0df988b"
+checksum = "e076559ef8e241f2ae3479e36f97bd5741c0330689e217ad51ce2c76808b868a"
 dependencies = [
  "aho-corasick",
  "memchr",
@@ -1863,9 +1869,8 @@ checksum = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
 
 [[package]]
 name = "typify"
-version = "0.0.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e8486352f3c946e69f983558cfc09b295250b01e01b381ec67a05a812d01d63"
+version = "0.0.11-dev"
+source = "git+https://github.com/jayvdb/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
 dependencies = [
  "typify-impl",
  "typify-macro",
@@ -1873,10 +1878,10 @@ dependencies = [
 
 [[package]]
 name = "typify-impl"
-version = "0.0.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a7624d0b911df6e2bbf34a236f76281f93b294cdde1d4df1dbdb748e5a7fefa5"
+version = "0.0.11-dev"
+source = "git+https://github.com/jayvdb/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
 dependencies = [
+ "eq-float",
  "heck",
  "log",
  "proc-macro2",
@@ -1892,9 +1897,8 @@ dependencies = [
 
 [[package]]
 name = "typify-macro"
-version = "0.0.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c42802aa033cee7650a4e1509ba7d5848a56f84be7c4b31e4385ee12445e942"
+version = "0.0.11-dev"
+source = "git+https://github.com/jayvdb/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
 dependencies = [
  "proc-macro2",
  "quote",
