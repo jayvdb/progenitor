@@ -24,7 +24,7 @@ thiserror = "1.0"
 # typify = "0.0.10"
 # This is https://github.com/oxidecomputer/typify/pull/109
 # and ros changes
-typify = { git = "https://github.com/jayvdb/typify", branch="ros-enhancements" }
+typify = { git = "https://github.com/franklin-ai/typify", branch="ros-enhancements" }
 unicode-ident = "1.0.5"
 
 [dev-dependencies]

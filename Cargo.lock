@@ -1870,7 +1870,7 @@ checksum = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
 [[package]]
 name = "typify"
 version = "0.0.11-dev"
-source = "git+https://github.com/jayvdb/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
+source = "git+https://github.com/franklin-ai/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
 dependencies = [
  "typify-impl",
  "typify-macro",
@@ -1879,7 +1879,7 @@ dependencies = [
 [[package]]
 name = "typify-impl"
 version = "0.0.11-dev"
-source = "git+https://github.com/jayvdb/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
+source = "git+https://github.com/franklin-ai/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
 dependencies = [
  "eq-float",
  "heck",
@@ -1898,7 +1898,7 @@ dependencies = [
 [[package]]
 name = "typify-macro"
 version = "0.0.11-dev"
-source = "git+https://github.com/jayvdb/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
+source = "git+https://github.com/franklin-ai/typify?branch=ros-enhancements#a5381b69ba4fb3a61468146df09cf20cbbd812f3"
 dependencies = [
  "proc-macro2",
  "quote",

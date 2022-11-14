@@ -17,3 +17,6 @@ members = [
 #[patch.crates-io]
 #typify = { path = "../typify/typify" }
 #rustfmt-wrapper = { path = "../rustfmt-wrapper" }
+
+# [patch."https://github.com/franklin-ai/typify"]
+# typify = { path = "../typify/typify" }
