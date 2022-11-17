@@ -231,6 +231,7 @@ impl Generator {
             pub mod types {
                 use serde::{Deserialize, Serialize};
                 use utoipa::ToSchema;
+                use fake::Dummy
 
                 // This may be used by some impl Deserialize, but not all.
                 #[allow(unused_imports)]
@@ -448,6 +449,7 @@ impl Generator {
             "serde = { version = \"1.0\", features = [\"derive\"] }",
             "serde_urlencoded = \"0.7\"",
             "utoipa = { version = \"2.2\", default-features=false, features = [\"actix_extras\"] }",
+            "fake = { version = \"2.5\", features = [\"chrono\", \"uuid\"] }",
         ];
         if self.type_space.uses_regress() {
             deps.push("regress = \"0.4\"")
