@@ -367,7 +367,7 @@ impl Generator {
             #[doc = #client_docstring]
             pub struct Client {
                 pub(crate) baseurl: String,
-                pub(crate) client: reqwest::Client,
+                pub(crate) client: reqwest_middleware::ClientWithMiddleware,
                 #inner_property
             }
 
@@ -385,14 +385,22 @@ impl Generator {
                     let client = {
                         let dur = std::time::Duration::from_secs(15);
 
-                        reqwest::ClientBuilder::new()
-                            .connect_timeout(dur)
-                            .timeout(dur)
+                        reqwest_middleware::ClientBuilder::new(
+                            reqwest::ClientBuilder::new()
+                                .connect_timeout(dur)
+                                .timeout(dur)
+                                .build()
+                                .unwrap()
+                        )
                     };
                     #[cfg(target_arch = "wasm32")]
-                    let client = reqwest::ClientBuilder::new();
+                    let client = reqwest_middleware::ClientBuilder::new(
+                        reqwest::ClientBuilder::new()
+                            .build()
+                            .unwrap()
+                    );
 
-                    Self::new_with_client(baseurl, client.build().unwrap(), #inner_value)
+                    Self::new_with_client(baseurl, client.build(), #inner_value)
                 }
 
                 /// Construct a new client with an existing `reqwest::Client`,
@@ -403,7 +411,7 @@ impl Generator {
                 /// as well as port and a path stem if applicable.
                 pub fn new_with_client(
                     baseurl: &str,
-                    client: reqwest::Client,
+                    client: reqwest_middleware::ClientWithMiddleware,
                     #inner_parameter
                 ) -> Self {
                     Self {
@@ -418,8 +426,7 @@ impl Generator {
                     &self.baseurl
                 }
 
-                /// Get the internal `reqwest::Client` used to make requests.
-                pub fn client(&self) -> &reqwest::Client {
+                pub fn client(&self) -> &reqwest_middleware::ClientWithMiddleware {
                     &self.client
                 }
 

@@ -8,7 +8,7 @@ use std::ops::{Deref, DerefMut};
 
 use bytes::Bytes;
 use futures_core::Stream;
-use reqwest::RequestBuilder;
+use reqwest_middleware::RequestBuilder;
 use serde::{de::DeserializeOwned, Serialize};
 
 #[cfg(not(target_arch = "wasm32"))]
@@ -232,7 +232,7 @@ pub enum Error<E = ()> {
     InvalidRequest(String),
 
     /// A server error either due to the data, or with the connection.
-    CommunicationError(reqwest::Error),
+    CommunicationError(reqwest_middleware::Error),
 
     /// An expected response when upgrading connection.
     InvalidUpgrade(reqwest::Error),
@@ -256,7 +256,13 @@ impl<E> Error<E> {
     pub fn status(&self) -> Option<reqwest::StatusCode> {
         match self {
             Error::InvalidRequest(_) => None,
-            Error::CommunicationError(e) => e.status(),
+            Error::CommunicationError(e) => {
+                if let reqwest_middleware::Error::Reqwest(e) = e {
+                    e.status()
+                } else {
+                    None
+                }
+            }
             Error::ErrorResponse(rv) => Some(rv.status()),
             Error::InvalidUpgrade(e) => e.status(),
             Error::ResponseBodyError(e) => e.status(),
@@ -294,6 +300,12 @@ impl<E> Error<E> {
 
 impl<E> From<reqwest::Error> for Error<E> {
     fn from(e: reqwest::Error) -> Self {
+        Self::CommunicationError(reqwest_middleware::Error::middleware(e))
+    }
+}
+
+impl<E> From<reqwest_middleware::Error> for Error<E> {
+    fn from(e: reqwest_middleware::Error) -> Self {
         Self::CommunicationError(e)
     }
 }
